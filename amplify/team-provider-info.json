@@ -17,6 +17,12 @@
       },
       "api": {
         "myyelp": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d17px7ndmaosp2",
+          "type": "cicd"
+        }
       }
     }
   }
