@@ -10,6 +10,11 @@
       "StackName": "amplify-myyelp-dev-de8b8",
       "StackId": "arn:aws:cloudformation:us-west-2:183631336951:stack/amplify-myyelp-dev-de8b8/2da8e2a0-e54d-11ef-ad17-0271f77511c5",
       "AmplifyAppId": "d17px7ndmaosp2"
+    },
+    "categories": {
+      "auth": {
+        "myyelpaeadd21b": {}
+      }
     }
   }
 }
