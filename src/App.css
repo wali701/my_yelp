@@ -1,3 +1,8 @@
+/* Global background color */
+body {
+  background-color: #f8f9fa; /* Light grey background */
+}
+
 .App {
   text-align: center;
 }
