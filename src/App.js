@@ -5,6 +5,7 @@ import { generateClient } from "aws-amplify/api";
 import awsExports from "./aws-exports";
 import { listRestaurants } from "./graphql/queries";
 import { createRestaurant } from "./graphql/mutations";
+import { withAuthenticator } from "@aws-amplify/ui-react"; 
 
 Amplify.configure(awsExports);
 const API = generateClient();
@@ -14,101 +15,85 @@ function App() {
   const [restaurants, setRestaurants] = useState([]);
   const [newRestaurant, setNewRestaurant] = useState({ name: "", description: "" });
 
-  // Check if user is authenticated
+  
   useEffect(() => {
-    async function fetchUser() {
-      try {
-        const userData = await getCurrentUser();
-        setUser(userData);
-      } catch {
-        setUser(null);
-      }
-    }
-    fetchUser();
+    getCurrentUser()
+      .then((userData) => setUser(userData))
+      .catch(() => setUser(null));
+  }, []);
+
+  
+  useEffect(() => {
     fetchRestaurants();
   }, []);
 
-  // Fetch restaurants from API
   const fetchRestaurants = async () => {
     try {
-      const restaurantData = await API.graphql({
-        query: listRestaurants,
-      });
+      const restaurantData = await API.graphql({ query: listRestaurants }); 
       setRestaurants(restaurantData.data.listRestaurants.items);
     } catch (error) {
       console.error("Error fetching restaurants", error);
     }
   };
 
-  // Create a new restaurant
   const handleCreateRestaurant = async (e) => {
     e.preventDefault();
-    if (!newRestaurant.name || !newRestaurant.description) return;
-
+    if (!newRestaurant.name || !newRestaurant.description) {
+      console.error("Restaurant name and description are required!");
+      return;
+    }
+  
+    if (!user || !user.username) {
+      console.error("User  is not authenticated or username is missing");
+      return;
+    }
+  
     try {
       const input = {
         name: newRestaurant.name,
         description: newRestaurant.description,
-        owner: user?.username,
+        owner: user.username,
       };
-      await API.graphql({
+  
+      console.log("Creating restaurant with input:", input);
+  
+      const result = await API.graphql({
         query: createRestaurant,
         variables: { input },
       });
+  
+      console.log("Restaurant created successfully:", result);
       setNewRestaurant({ name: "", description: "" });
-      fetchRestaurants(); // Refresh the list
+      fetchRestaurants();
     } catch (error) {
-      console.error("Error creating restaurant", error);
-    }
-  };
-
-  // Handle user sign in
-  const handleSignIn = async () => {
-    try {
-      await signIn({ username: "testuser", password: "Test@1234" });
-      const userData = await getCurrentUser();
-      setUser(userData);
-    } catch (error) {
-      console.error("Error signing in", error);
-    }
-  };
-
-  // Handle user sign up (for demo purposes)
-  const handleSignUp = async () => {
-    try {
-      await signUp({
-        username: "testuser",
-        password: "Test@1234",
-        attributes: { email: "test@example.com" },
-      });
-      console.log("User signed up successfully");
-    } catch (error) {
-      console.error("Error signing up", error);
+      console.error("Error creating restaurant:", JSON.stringify(error, null, 2));
     }
   };
 
   return (
     <div>
-      <h1>My Yelp App</h1>
+      <h1>My Yelp</h1>
 
       {user ? (
-        <>
-          <p>Welcome, {user.username}</p>
-          <button onClick={() => signOut().then(() => setUser(null))}>Sign Out</button>
+        <div>
+          <p>Welcome, {user.username}!</p>
+          <button onClick={() => signOut()}>Sign Out</button> {/* ✅ Fixed Auth.signOut() */}
 
           <h2>Create a New Restaurant</h2>
           <form onSubmit={handleCreateRestaurant}>
             <input
               type="text"
-              placeholder="Name"
+              placeholder="Restaurant Name"
               value={newRestaurant.name}
               onChange={(e) => setNewRestaurant({ ...newRestaurant, name: e.target.value })}
+              required
             />
             <input
               type="text"
               placeholder="Description"
               value={newRestaurant.description}
               onChange={(e) => setNewRestaurant({ ...newRestaurant, description: e.target.value })}
+              required
             />
             <button type="submit">Add Restaurant</button>
           </form>
@@ -117,20 +102,16 @@ function App() {
           <ul>
             {restaurants.map((restaurant) => (
               <li key={restaurant.id}>
-                <strong>{restaurant.name}</strong>: {restaurant.description}
+                <strong>{restaurant.name}</strong> - {restaurant.description} (by {restaurant.owner})
               </li>
             ))}
           </ul>
-        </>
+        </div>
       ) : (
-        <>
-          <p>Please sign in or sign up.</p>
-          <button onClick={handleSignIn}>Sign In</button>
-          <button onClick={handleSignUp}>Sign Up</button>
-        </>
+        <p>Please sign in to add restaurants.</p>
       )}
     </div>
   );
 }
 
-export default App;
+export default withAuthenticator(App); 

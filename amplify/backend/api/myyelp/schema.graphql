@@ -1,8 +1,6 @@
-type Restaurant
-  @model
-  @auth(rules: [{ allow: owner }, { allow: public, operations: [read] }]) {
+type Restaurant @model @auth(rules: [{ allow: public }]) {
   id: ID!
   name: String!
   description: String!
-  owner: String!
+  owner: String
 }

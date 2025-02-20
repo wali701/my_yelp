@@ -4,9 +4,8 @@
 export const onCreateRestaurant = /* GraphQL */ `
   subscription OnCreateRestaurant(
     $filter: ModelSubscriptionRestaurantFilterInput
-    $owner: String
   ) {
-    onCreateRestaurant(filter: $filter, owner: $owner) {
+    onCreateRestaurant(filter: $filter) {
       id
       name
       description
@@ -20,9 +19,8 @@ export const onCreateRestaurant = /* GraphQL */ `
 export const onUpdateRestaurant = /* GraphQL */ `
   subscription OnUpdateRestaurant(
     $filter: ModelSubscriptionRestaurantFilterInput
-    $owner: String
   ) {
-    onUpdateRestaurant(filter: $filter, owner: $owner) {
+    onUpdateRestaurant(filter: $filter) {
       id
       name
       description
@@ -36,9 +34,8 @@ export const onUpdateRestaurant = /* GraphQL */ `
 export const onDeleteRestaurant = /* GraphQL */ `
   subscription OnDeleteRestaurant(
     $filter: ModelSubscriptionRestaurantFilterInput
-    $owner: String
   ) {
-    onDeleteRestaurant(filter: $filter, owner: $owner) {
+    onDeleteRestaurant(filter: $filter) {
       id
       name
       description
