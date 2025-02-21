@@ -89,7 +89,7 @@ function App() {
 
       {user ? (
         <div className="container">
-          <p>Welcome, {user.signInDetails?.loginId || user.username}!</p>
+          <p>Welcome, {user.signInDetails.loginId || user.username}!</p>
           
 
           <h2>Create a New Restaurant</h2>
