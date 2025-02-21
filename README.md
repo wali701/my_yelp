@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Welcome to My Yelp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+## Task
 
-In the project directory, you can run:
+The task is to create a simple restaurant review app using ReactJS and AWS Amplify, that allows users to:
+sign in/sign up and sign out via AWS authentication, and to create, view, and delete restaurant listings. and also
+store data using AWS Amplify GraphQL API.
 
-### `npm start`
+## Description
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To solve the problem of managing restaurant listings, this app uses:
+ReactJS and its dependencies for the frontend, AWS Amplify for authentication and GraphQL API.
+Netlify for deployment.the key Features involved: user authentication using AWS Cognito.
+CRUD operations for restaurants, a responsive UI with a background image, and also hosted on Netlify for easy access.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+Ensure you have the following installed:
+Node.js (>= 14.x)
+npm or yarn
+Git
+aws account
+AWS Amplify CLI (npm install -g @aws-amplify/cli)
+clone the project repository and install the neccessary dependencies
+by running npm install
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
 
-### `npm run build`
+After installing the node.js and running npm install for the dependencies, creates the aws account, aws configure, and then configure the
+amplify by running: amplify init, follow the steps, then run amplify add auth for the user login and sign up, run amplify push then run amplify
+add api to generate the gragpql schema and amplify push to updates the schema. Adjust the necessary files like the app.js and app.css for the styling. Try it locally by running npm start if it works the
+run npm run build for the deployment.
+Deploy to Netlify:the project was Pushed to GitHub, Connects the repository to Netlify.
+Set the build command to npm run build and publish directory to build. After the deployment, the url was generated and copied: https://67b8661b2aeca0a85ec42cd5--storied-rolypoly-ddacfc.netlify.app/
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+./my_yelp
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### The Core Team
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Salaha Abubakar
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<span><i>Made at <a href='https://qwasar.io'>Qwasar SV -- Software Engineering School</a></i></span>
+<span><img alt='Qwasar SV -- Software Engineering School's Logo' src='https://storage.googleapis.com/qwasar-public/qwasar-logo_50x50.png' width='20px' /></span>
