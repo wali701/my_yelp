@@ -1,0 +1,13 @@
+{
+    "AppSyncApiName": "myyelp",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authmyyelp7bf55cd3",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "S3DeploymentBucket": "amplify-myyelp-dev-88e59-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/4be9e08c9f5d332abee68959e0df1b4bf93dafa0"
+}
